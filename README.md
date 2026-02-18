@@ -2,11 +2,11 @@
 
 <!-- Build Badge -->
 
-[![Build Status](https://github.com/pactflow/example-bi-directional-provider-dredd/actions/workflows/build.yml/badge.svg)](https://github.com/pactflow/example-bi-directional-provider-dredd/actions)
+[![Build Status](https://github.com/luciancrasovan/example-bi-directional-provider-dredd/actions/workflows/build.yml/badge.svg)](https://github.com/luciancrasovan/example-bi-directional-provider-dredd/actions)
 
 <!-- Can I Deploy Badge -->
 
-[![Can I deploy Status](https://testdemo.pactflow.io/pacticipants/pactflow-example-bi-directional-provider-dredd/branches/master/latest-version/can-i-deploy/to-environment/production/badge)](https://testdemo.pactflow.io/pacticipants/pactflow-example-bi-directional-provider-dredd/branches/master/latest-version/can-i-deploy/to-environment/production/badge)
+[![Can I deploy Status](https://testdemo.pactflow.io/pacticipants/example-bi-directional-provider-dredd/branches/master/latest-version/can-i-deploy/to-environment/production/badge)](https://testdemo.pactflow.io/pacticipants/example-bi-directional-provider-dredd/branches/master/latest-version/can-i-deploy/to-environment/production/badge)
 
 - [Example NodeJS Provider - Dredd](#example-nodejs-provider---dredd)
   - [Overview of Example](#overview-of-example)
@@ -102,7 +102,7 @@ To be able to run some of the commands locally, you will need to export the foll
 
 Set `PACT_PROVIDER` to one of the following
 
-- `PACT_PROVIDER=pactflow-example-bi-directional-provider-dredd`: Dredd - (https://github.com/pactflow/example-bi-directional-provider-dredd)
+- `PACT_PROVIDER=example-bi-directional-provider-dredd`: Dredd - (https://github.com/luciancrasovan/example-bi-directional-provider-dredd)
 - `PACT_PROVIDER=pactflow-example-bi-directional-provider-postman`: Postman - (https://github.com/pactflow/example-bi-directional-provider-postman)
 - `PACT_PROVIDER=pactflow-example-bi-directional-provider-restassured`: Rest Assured - (https://github.com/pactflow/example-bi-directional-provider-restassured)
 
