@@ -304,7 +304,7 @@
     "schemas": {
       "KuttyDto": {
         "required": [
-          "skuCode",
+          "code",
           "id",
           "name"
         ],
@@ -314,7 +314,7 @@
             "type": "string",
             "nullable": true
           },
-          "skuCode": {
+          "code": {
             "type": "string",
             "nullable": true
           },

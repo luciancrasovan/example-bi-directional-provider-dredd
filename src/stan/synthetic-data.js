@@ -7,7 +7,7 @@ const buildKutty = (id) => {
     const value = normalizedId(id);
     return {
         id: value,
-        skuCode: `KCODE-${value}`,
+        code: `KCODE-${value}`,
         name: `Synthetic Kutty ${value}`
     };
 };
