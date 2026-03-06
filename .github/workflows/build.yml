@@ -70,7 +70,7 @@ jobs:
         run: GIT_BRANCH=${GITHUB_REF:11} make can_i_deploy
         shell: bash
 
-  # Only deploy from master
+  # Only deploy from stan-v3
   deploy:
     strategy:
       fail-fast: false
@@ -84,5 +84,5 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: 🚀 Deploy
         run: GIT_BRANCH=${GITHUB_REF:11} make deploy
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/stan-v3'
         shell: bash
