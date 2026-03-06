@@ -42,6 +42,8 @@ ci:
 
 publish_provider_contract:
 	@echo "\n========== STAGE: publish-provider-contract (spec + results) ==========\n"
+	@mkdir -p $(dir ${REPORT_PATH})
+	@touch ${REPORT_PATH}
 	${PACTFLOW_CLI_COMMAND} publish-provider-contract \
       ${OAS_PATH} \
       --provider ${PACTICIPANT} \

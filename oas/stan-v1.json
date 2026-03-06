@@ -8,9 +8,6 @@
   "paths": {
     "/v1/AL/VkL": {
       "get": {
-        "tags": [
-          "AL"
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -20,16 +17,15 @@
     },
     "/v1/AL/VkL/{shortName}": {
       "delete": {
-        "tags": [
-          "AL"
-        ],
         "parameters": [
           {
             "name": "shortName",
             "in": "path",
             "required": true,
+            "example": "ALPHA",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "ALPHA"
             }
           }
         ],
@@ -42,9 +38,6 @@
     },
     "/v1/Kutty": {
       "get": {
-        "tags": [
-          "Kutty"
-        ],
         "summary": "",
         "responses": {
           "200": {
@@ -81,18 +74,16 @@
     },
     "/v1/Kutty/Id/{id}": {
       "get": {
-        "tags": [
-          "Kutty"
-        ],
         "summary": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "example": 101,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "default": 101
             }
           }
         ],
@@ -122,17 +113,16 @@
     },
     "/v1/Kutty/ShortName/{shortName}": {
       "get": {
-        "tags": [
-          "Kutty"
-        ],
         "summary": "",
         "parameters": [
           {
             "name": "shortName",
             "in": "path",
             "required": true,
+            "example": "ALPHA",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "ALPHA"
             }
           }
         ],
@@ -164,7 +154,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": null
+            "description": "OK"
           }
         }
       }
@@ -176,8 +166,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "format": "int32"
+            "type": "integer"
           },
           "name": {
             "type": "string",
@@ -192,8 +181,7 @@
             "nullable": true
           },
           "metaB": {
-            "type": "string",
-            "format": "date-time"
+            "type": "string"
           },
           "metaC": {
             "type": "string",
@@ -201,7 +189,6 @@
           },
           "metaD": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           },
           "metaE": {
@@ -210,24 +197,14 @@
           },
           "metaF": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           },
           "metaG": {
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       }
     }
-  },
-  "tags": [
-    {
-      "name": "AL"
-    },
-    {
-      "name": "Kutty"
-    }
-  ]
+  }
 }
