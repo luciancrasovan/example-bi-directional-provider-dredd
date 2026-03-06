@@ -16,7 +16,7 @@ OAS_PATH=oas/stan-v3.json
 REPORT_PATH?=output/report.md
 REPORT_FILE_CONTENT_TYPE?=text/plain
 VERIFIER_TOOL?=dredd
-DEPLOY_ENVIRONMENT ?= "staging"
+DEPLOY_ENVIRONMENT ?= staging
 
 ## ====================
 ## Only deploy from main
