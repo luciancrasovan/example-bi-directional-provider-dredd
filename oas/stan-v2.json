@@ -70,8 +70,7 @@
             "required": true,
             "example": "K-101",
             "schema": {
-              "type": "string",
-              "default": "K-101"
+              "type": "string"
             }
           }
         ],
@@ -189,8 +188,7 @@
             "required": true,
             "example": "W-201",
             "schema": {
-              "type": "string",
-              "default": "W-201"
+              "type": "string"
             }
           }
         ],
@@ -308,11 +306,7 @@
         "type": "object",
         "properties": {
           "scope": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WittyLevelDto"
-              }
-            ],
+            "$ref": "#/components/schemas/WittyLevelDto",
             "nullable": true
           },
           "metric": {
