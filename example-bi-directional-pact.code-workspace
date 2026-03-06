@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "example-bi-directional-consumer-wiremock",
+			"path": "../example-bi-directional-consumer-wiremock"
+		}
+	],
+	"settings": {}
+}
