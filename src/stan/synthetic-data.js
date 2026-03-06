@@ -8,7 +8,8 @@ const buildKutty = (id) => {
     return {
         id: value,
         code: `KCODE-${value}`,
-        name: `Synthetic Kutty ${value}`
+        name: `Synthetic Kutty ${value}`,
+        category: 'standard'
     };
 };
 
