@@ -1,8 +1,15 @@
-const { buildKutty, defaultKuttyDataset, safeId } = require('./synthetic-data');
+const {
+    buildKutty,
+    buildWitty,
+    defaultKuttyDataset,
+    defaultWittyDataset,
+    normalizedId
+} = require('./synthetic-data');
 
 class StanRepository {
     constructor() {
         this.kutty = defaultKuttyDataset();
+        this.witty = defaultWittyDataset();
     }
 
     async getAllKutty() {
@@ -10,21 +17,19 @@ class StanRepository {
     }
 
     async getKuttyById(id) {
-        const normalizedId = safeId(id);
-        const found = this.kutty.find((entry) => entry.id === normalizedId);
-        return found || buildKutty({ id: normalizedId });
+        const idValue = normalizedId(id);
+        const found = this.kutty.find((entry) => entry.id === idValue);
+        return found || buildKutty(idValue);
     }
 
-    async getKuttyByShortName(shortName) {
-        const normalizedShortName = (shortName || '').trim();
-        const found = this.kutty.find((entry) => entry.code.toLowerCase() === normalizedShortName.toLowerCase());
+    async getAllWitty() {
+        return this.witty;
+    }
 
-        if (found) {
-            return found;
-        }
-
-        const syntheticId = Math.max(1, normalizedShortName.length * 11);
-        return buildKutty({ id: syntheticId, shortName: normalizedShortName || 'UNKNOWN' });
+    async getWittyById(id) {
+        const idValue = normalizedId(id);
+        const found = this.witty.find((entry) => entry.id === idValue);
+        return found || buildWitty(idValue);
     }
 }
 

@@ -2,9 +2,9 @@ const StanRepository = require('./stan.repository');
 
 const repository = new StanRepository();
 const SUPPORTED_MEDIA_TYPES = [
-    'application/json; x-api-version=1.0',
-    'text/json; x-api-version=1.0',
-    'text/plain; x-api-version=1.0'
+    'application/json; x-api-version=2.0',
+    'text/json; x-api-version=2.0',
+    'text/plain; x-api-version=2.0'
 ];
 
 const resolveResponseMediaType = (request) => {
@@ -22,14 +22,6 @@ const sendVersionedPayload = (response, payload, mediaType) => {
     response.end(body);
 };
 
-exports.getAlVkl = async (req, res) => {
-    res.status(200).end();
-};
-
-exports.deleteAlVklByShortName = async (req, res) => {
-    res.status(200).end();
-};
-
 exports.getKutty = async (req, res) => {
     const kutty = await repository.getAllKutty();
     const mediaType = resolveResponseMediaType(req);
@@ -42,10 +34,16 @@ exports.getKuttyById = async (req, res) => {
     sendVersionedPayload(res, kutty, mediaType);
 };
 
-exports.getKuttyByShortName = async (req, res) => {
-    const kutty = await repository.getKuttyByShortName(req.params.shortName);
+exports.getWitty = async (req, res) => {
+    const witty = await repository.getAllWitty();
     const mediaType = resolveResponseMediaType(req);
-    sendVersionedPayload(res, kutty, mediaType);
+    sendVersionedPayload(res, witty, mediaType);
+};
+
+exports.getWittyById = async (req, res) => {
+    const witty = await repository.getWittyById(req.params.id);
+    const mediaType = resolveResponseMediaType(req);
+    sendVersionedPayload(res, witty, mediaType);
 };
 
 exports.health = async (req, res) => {
