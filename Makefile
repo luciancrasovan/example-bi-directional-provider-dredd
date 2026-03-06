@@ -1,4 +1,4 @@
-PACTICIPANT ?= "example-bi-directional-provider-dredd"
+PACTICIPANT ?= "stan-api-v3"
 GITHUB_REPO := "luciancrasovan/example-bi-directional-provider-dredd"
 PACT_CLI_DOCKER_VERSION?=latest
 PACT_CLI_DOCKER_RUN_COMMAND?=docker run --rm -v /${PWD}:/${PWD} -w ${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:${PACT_CLI_DOCKER_VERSION}
