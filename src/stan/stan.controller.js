@@ -14,9 +14,12 @@ const resolveResponseMediaType = (request) => {
 };
 
 const sendVersionedPayload = (response, payload, mediaType) => {
-    response.status(200);
-    response.set('Content-Type', mediaType);
-    response.end(JSON.stringify(payload));
+    const body = Buffer.from(JSON.stringify(payload), 'utf8');
+    response.writeHead(200, {
+        'Content-Type': mediaType,
+        'Content-Length': body.length
+    });
+    response.end(body);
 };
 
 exports.getAlVkl = async (req, res) => {
