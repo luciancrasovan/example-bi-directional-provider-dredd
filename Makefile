@@ -12,7 +12,7 @@ PACTFLOW_CLI_COMMAND:=${PACT_CLI_DOCKER_RUN_COMMAND} ${PACTFLOW_CLI_COMMAND}
 ## ====================
 VERSION?=$(shell npx -y absolute-version)
 BRANCH?=$(shell git rev-parse --abbrev-ref HEAD)
-OAS_PATH=oas/products.yml
+OAS_PATH=oas/stan-v1.json
 REPORT_PATH?=output/report.md
 REPORT_FILE_CONTENT_TYPE?=text/plain
 VERIFIER_TOOL?=dredd
@@ -47,7 +47,7 @@ publish_provider_contract:
       --provider ${PACTICIPANT} \
       --provider-app-version ${VERSION} \
       --branch ${BRANCH} \
-      --content-type application/yaml \
+	--content-type application/json \
       --verification-exit-code=${EXIT_CODE} \
       --verification-results ${REPORT_PATH} \
       --verification-results-content-type ${REPORT_FILE_CONTENT_TYPE}\

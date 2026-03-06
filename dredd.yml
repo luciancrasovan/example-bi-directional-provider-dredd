@@ -28,5 +28,5 @@ hooks-worker-term-retry: 500
 hooks-worker-handler-host: 127.0.0.1
 hooks-worker-handler-port: 61321
 config: ./dredd.yml
-blueprint: ./oas/products.yml
+blueprint: ./oas/stan-v1.json
 endpoint: 'http://127.0.0.1:3001'
