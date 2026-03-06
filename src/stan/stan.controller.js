@@ -29,9 +29,11 @@ const sendVersionedPayload = (response, payload, mediaType, statusCode = 200) =>
 const sendUnauthorized = (request, response) => {
     const mediaType = resolveResponseMediaType(request);
     const payload = {
+        type: null,
         title: 'Unauthorized',
         status: 401,
-        detail: 'Missing authorization header.'
+        detail: 'Missing authorization header.',
+        instance: null
     };
     sendVersionedPayload(response, payload, mediaType, 401);
 };

@@ -306,8 +306,7 @@
         "type": "object",
         "properties": {
           "scope": {
-            "$ref": "#/components/schemas/WittyLevelDto",
-            "nullable": true
+            "$ref": "#/components/schemas/WittyLevelDto"
           },
           "metric": {
             "type": "number"
