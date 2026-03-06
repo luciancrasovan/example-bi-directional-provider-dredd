@@ -77,7 +77,7 @@ jobs:
       matrix:
         os: ['ubuntu-latest']
     runs-on: ${{ matrix.os }}
-    needs: [can-i-deploy, set-pact-cli-docker-version]
+    needs: [test, set-pact-cli-docker-version]
     env:
       PACT_CLI_DOCKER_VERSION: ${{ needs.set-pact-cli-docker-version.outputs.PACT_CLI_DOCKER_VERSION}}
     steps:
