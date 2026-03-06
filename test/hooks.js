@@ -9,9 +9,9 @@ hooks.beforeEach((transaction, done) => {
 		delete headers['x-force-status'];
 	}
 
-	if (expectedStatusCode === '204') {
+	if (expectedStatusCode === '404') {
 		headers.Authorization = 'Bearer synthetic-token';
-		headers['x-force-status'] = '204';
+		headers['x-force-status'] = '404';
 	}
 
 	if (expectedStatusCode === '401') {

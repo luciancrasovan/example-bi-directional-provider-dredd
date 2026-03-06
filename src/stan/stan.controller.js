@@ -2,9 +2,9 @@ const StanRepository = require('./stan.repository');
 
 const repository = new StanRepository();
 const SUPPORTED_MEDIA_TYPES = [
-    'application/json; x-api-version=2.0',
-    'text/json; x-api-version=2.0',
-    'text/plain; x-api-version=2.0'
+    'application/json; x-api-version=3.0',
+    'text/json; x-api-version=3.0',
+    'text/plain; x-api-version=3.0'
 ];
 
 const resolveResponseMediaType = (request) => {
@@ -15,6 +15,11 @@ const resolveResponseMediaType = (request) => {
 
 const hasAuthorization = (request) => {
     return Boolean(request.headers.authorization);
+};
+
+const shouldIncludeDescription = (request) => {
+    const raw = String(request.query.includeDescription ?? '').toLowerCase();
+    return raw === 'true' || raw === '1';
 };
 
 const sendVersionedPayload = (response, payload, mediaType, statusCode = 200) => {
@@ -38,9 +43,16 @@ const sendUnauthorized = (request, response) => {
     sendVersionedPayload(response, payload, mediaType, 401);
 };
 
-const sendNoContent = (response) => {
-    response.writeHead(204);
-    response.end();
+const sendNotFound = (request, response) => {
+    const mediaType = resolveResponseMediaType(request);
+    const payload = {
+        type: null,
+        title: 'Not Found',
+        status: 404,
+        detail: 'Entity not found.',
+        instance: null
+    };
+    sendVersionedPayload(response, payload, mediaType, 404);
 };
 
 exports.getKutty = async (req, res) => {
@@ -54,12 +66,17 @@ exports.getKutty = async (req, res) => {
 };
 
 exports.getKuttyById = async (req, res) => {
-    if (req.headers['x-force-status'] === '204') {
-        return sendNoContent(res);
-    }
-
     if (!hasAuthorization(req)) {
         return sendUnauthorized(req, res);
+    }
+
+    if (req.headers['x-force-status'] === '404') {
+        return sendNotFound(req, res);
+    }
+
+    const exists = await repository.hasKutty(req.params.id);
+    if (!exists) {
+        return sendNotFound(req, res);
     }
 
     const kutty = await repository.getKuttyById(req.params.id);
@@ -72,7 +89,7 @@ exports.getWitty = async (req, res) => {
         return sendUnauthorized(req, res);
     }
 
-    const witty = await repository.getAllWitty();
+    const witty = await repository.getAllWitty(shouldIncludeDescription(req));
     const mediaType = resolveResponseMediaType(req);
     sendVersionedPayload(res, witty, mediaType);
 };
@@ -82,7 +99,16 @@ exports.getWittyById = async (req, res) => {
         return sendUnauthorized(req, res);
     }
 
-    const witty = await repository.getWittyById(req.params.id);
+    if (req.headers['x-force-status'] === '404') {
+        return sendNotFound(req, res);
+    }
+
+    const exists = await repository.hasWitty(req.params.id);
+    if (!exists) {
+        return sendNotFound(req, res);
+    }
+
+    const witty = await repository.getWittyById(req.params.id, shouldIncludeDescription(req));
     const mediaType = resolveResponseMediaType(req);
     sendVersionedPayload(res, witty, mediaType);
 };

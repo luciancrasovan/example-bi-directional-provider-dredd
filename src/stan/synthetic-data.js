@@ -7,6 +7,7 @@ const buildKutty = (id) => {
     const value = normalizedId(id);
     return {
         id: value,
+        code: `KCODE-${value}`,
         name: `Synthetic Kutty ${value}`
     };
 };
@@ -27,6 +28,7 @@ const buildWitty = (id) => {
     const seed = value.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 100;
     return {
         id: value,
+        description: null,
         items: [
             buildWittyItem(seed, 1),
             buildWittyItem(seed, 2),

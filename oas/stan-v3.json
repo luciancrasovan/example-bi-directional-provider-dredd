@@ -1,18 +1,169 @@
 {
   "openapi": "3.0.4",
   "info": {
-    "title": "Contract Surface Two",
+    "title": "Contract Surface Three",
     "description": "Synthetic API definition for external consumers.",
-    "version": "2.0"
+    "version": "3.0"
   },
   "paths": {
-    "/v2/Kutty": {
+    "/v3/BI/Witty": {
       "get": {
+        "operationId": "GetAllWitty",
+        "parameters": [
+          {
+            "name": "includeDescription",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
-              "text/plain; x-api-version=2.0": {
+              "text/plain; x-api-version=3.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WittyDto"
+                  }
+                }
+              },
+              "application/json; x-api-version=3.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WittyDto"
+                  }
+                }
+              },
+              "text/json; x-api-version=3.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WittyDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/BI/Witty/{id}": {
+      "get": {
+        "operationId": "GetWittyById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "example": "W-301",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeDescription",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/WittyDto"
+                }
+              },
+              "application/json; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/WittyDto"
+                }
+              },
+              "text/json; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/WittyDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json; x-api-version=3.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/GI/Kutty": {
+      "get": {
+        "operationId": "GetAllKutty",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain; x-api-version=3.0": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -20,7 +171,7 @@
                   }
                 }
               },
-              "application/json; x-api-version=2.0": {
+              "application/json; x-api-version=3.0": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -28,7 +179,7 @@
                   }
                 }
               },
-              "text/json; x-api-version=2.0": {
+              "text/json; x-api-version=3.0": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -41,17 +192,17 @@
           "401": {
             "description": "Unauthorized",
             "content": {
-              "text/plain; x-api-version=2.0": {
+              "text/plain; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
                 }
               },
-              "application/json; x-api-version=2.0": {
+              "application/json; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
                 }
               },
-              "text/json; x-api-version=2.0": {
+              "text/json; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
                 }
@@ -61,8 +212,9 @@
         }
       }
     },
-    "/v2/Kutty/Kutty/{id}": {
+    "/v3/GI/Kutty/{id}": {
       "get": {
+        "operationId": "GetKuttyById",
         "parameters": [
           {
             "name": "id",
@@ -78,78 +230,19 @@
           "200": {
             "description": "OK",
             "content": {
-              "text/plain; x-api-version=2.0": {
+              "text/plain; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/KuttyDto"
                 }
               },
-              "application/json; x-api-version=2.0": {
+              "application/json; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/KuttyDto"
                 }
               },
-              "text/json; x-api-version=2.0": {
+              "text/json; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/KuttyDto"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "text/plain; x-api-version=2.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "application/json; x-api-version=2.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "text/json; x-api-version=2.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v2/Witty": {
-      "get": {
-        "operationId": "GetV2Witty",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain; x-api-version=2.0": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WittyDto"
-                  }
-                }
-              },
-              "application/json; x-api-version=2.0": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WittyDto"
-                  }
-                }
-              },
-              "text/json; x-api-version=2.0": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WittyDto"
-                  }
                 }
               }
             }
@@ -157,76 +250,37 @@
           "401": {
             "description": "Unauthorized",
             "content": {
-              "text/plain; x-api-version=2.0": {
+              "text/plain; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
                 }
               },
-              "application/json; x-api-version=2.0": {
+              "application/json; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
                 }
               },
-              "text/json; x-api-version=2.0": {
+              "text/json; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v2/Witty/Witty/{id}": {
-      "get": {
-        "summary": "",
-        "operationId": "GetV2WittyById",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "example": "W-201",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain; x-api-version=2.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/WittyDto"
-                }
-              },
-              "application/json; x-api-version=2.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/WittyDto"
-                }
-              },
-              "text/json; x-api-version=2.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/WittyDto"
                 }
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
+          "404": {
+            "description": "Not Found",
             "content": {
-              "text/plain; x-api-version=2.0": {
+              "text/plain; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
                 }
               },
-              "application/json; x-api-version=2.0": {
+              "application/json; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
                 }
               },
-              "text/json; x-api-version=2.0": {
+              "text/json; x-api-version=3.0": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
                 }
@@ -249,9 +303,18 @@
   "components": {
     "schemas": {
       "KuttyDto": {
+        "required": [
+          "code",
+          "id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
             "type": "string",
             "nullable": true
           },
@@ -287,6 +350,10 @@
         }
       },
       "WittyDto": {
+        "required": [
+          "id",
+          "items"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -299,10 +366,18 @@
               "$ref": "#/components/schemas/WittyItemDto"
             },
             "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
       "WittyItemDto": {
+        "required": [
+          "metric",
+          "scope"
+        ],
         "type": "object",
         "properties": {
           "scope": {
@@ -318,6 +393,9 @@
         }
       },
       "WittyLevelDto": {
+        "required": [
+          "ref"
+        ],
         "type": "object",
         "properties": {
           "ref": {
