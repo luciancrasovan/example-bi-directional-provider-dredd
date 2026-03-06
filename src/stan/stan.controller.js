@@ -103,11 +103,6 @@ exports.getWittyById = async (req, res) => {
         return sendNotFound(req, res);
     }
 
-    const exists = await repository.hasWitty(req.params.id);
-    if (!exists) {
-        return sendNotFound(req, res);
-    }
-
     const witty = await repository.getWittyById(req.params.id, shouldIncludeDescription(req));
     const mediaType = resolveResponseMediaType(req);
     sendVersionedPayload(res, witty, mediaType);
