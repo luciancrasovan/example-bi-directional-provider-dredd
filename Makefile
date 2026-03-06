@@ -16,6 +16,7 @@ OAS_PATH=oas/stan-v3.json
 REPORT_PATH?=output/report.md
 REPORT_FILE_CONTENT_TYPE?=text/plain
 VERIFIER_TOOL?=dredd
+DEPLOY_ENVIRONMENT ?= "staging"
 
 ## ====================
 ## Only deploy from main
@@ -86,7 +87,7 @@ can_i_deploy:
 	${PACT_BROKER_CLI_COMMAND} can-i-deploy \
 	--pacticipant ${PACTICIPANT} \
 	--version ${VERSION} \
-	--to-environment production \
+	--to-environment ${DEPLOY_ENVIRONMENT} \
 	--retry-while-unknown 6 \
 	--retry-interval 10
 
@@ -95,6 +96,6 @@ deploy_app:
 	@echo "Deploying to prod"
 
 record_deployment: 
-	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment production
+	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
 
 .PHONY: all test clean
