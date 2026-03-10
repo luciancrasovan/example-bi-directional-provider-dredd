@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const routes = require('./src/stan/stan.routes');
+const routes = require('./src/hippie/hippie.routes');
 
 const port = 3001;
 

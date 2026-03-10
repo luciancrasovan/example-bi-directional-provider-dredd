@@ -1,0 +1,483 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Hippie",
+    "description": "Woodstock Festival",
+    "version": "v1"
+  },
+  "paths": {
+    "/pitty/notty": {
+      "post": {
+        "tags": [
+          "Pitty"
+        ],
+        "operationId": "Notty",
+        "parameters": [
+          {
+            "name": "force",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PittyD"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PittyD"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PittyD"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RD"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ExceptionResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HttpStatusCode": {
+        "enum": [
+          "Continue",
+          "SwitchingProtocols",
+          "Processing",
+          "EarlyHints",
+          "OK",
+          "Created",
+          "Accepted",
+          "NonAuthoritativeInformation",
+          "NoContent",
+          "ResetContent",
+          "PartialContent",
+          "MultiStatus",
+          "AlreadyReported",
+          "IMUsed",
+          "MultipleChoices",
+          "MovedPermanently",
+          "Found",
+          "SeeOther",
+          "NotModified",
+          "UseProxy",
+          "Unused",
+          "TemporaryRedirect",
+          "PermanentRedirect",
+          "BadRequest",
+          "Unauthorized",
+          "PaymentRequired",
+          "Forbidden",
+          "NotFound",
+          "MethodNotAllowed",
+          "NotAcceptable",
+          "ProxyAuthenticationRequired",
+          "RequestTimeout",
+          "Conflict",
+          "Gone",
+          "LengthRequired",
+          "PreconditionFailed",
+          "RequestEntityTooLarge",
+          "RequestUriTooLong",
+          "UnsupportedMediaType",
+          "RequestedRangeNotSatisfiable",
+          "ExpectationFailed",
+          "MisdirectedRequest",
+          "UnprocessableEntity",
+          "Locked",
+          "FailedDependency",
+          "UpgradeRequired",
+          "PreconditionRequired",
+          "TooManyRequests",
+          "RequestHeaderFieldsTooLarge",
+          "UnavailableForLegalReasons",
+          "InternalServerError",
+          "NotImplemented",
+          "BadGateway",
+          "ServiceUnavailable",
+          "GatewayTimeout",
+          "HttpVersionNotSupported",
+          "VariantAlsoNegotiates",
+          "InsufficientStorage",
+          "LoopDetected",
+          "NotExtended",
+          "NetworkAuthenticationRequired"
+        ],
+        "type": "string"
+      },
+      "PittyD": {
+        "type": "object",
+        "properties": {
+          "c": {
+            "$ref": "#/components/schemas/PittyDC"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PittyDA": {
+        "type": "object",
+        "properties": {
+          "m": {
+            "type": "string",
+            "nullable": true
+          },
+          "p": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PittyDP"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PittyDC": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PittyDA"
+            },
+            "nullable": true
+          },
+          "sourceSystem": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PittyDP": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productNr": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelNr": {
+            "type": "string",
+            "nullable": true
+          },
+          "pxid": {
+            "type": "string",
+            "nullable": true
+          },
+          "t": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PittyDT"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PittyDT": {
+        "type": "object",
+        "properties": {
+          "tN": {
+            "type": "string",
+            "nullable": true
+          },
+          "v": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PittyDV"
+            },
+            "nullable": true
+          },
+          "aL": {
+            "type": "string",
+            "nullable": true
+          },
+          "c": {
+            "type": "string",
+            "nullable": true
+          },
+          "l": {
+            "type": "string",
+            "nullable": true
+          },
+          "dId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PittyDV": {
+        "type": "object",
+        "properties": {
+          "fN": {
+            "type": "string",
+            "nullable": true
+          },
+          "fT": {
+            "type": "string",
+            "nullable": true
+          },
+          "iN": {
+            "type": "boolean"
+          },
+          "cX": {
+            "type": "string",
+            "nullable": true
+          },
+          "dV": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sV": {
+            "type": "string",
+            "nullable": true
+          },
+          "iV": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bV": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "fV": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RD": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "decision": {
+            "enum": [
+              "P1",
+              "P2",
+              "P3",
+              "P4"
+            ],
+            "type": "string"
+          },
+          "validationResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VR"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VER": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VR": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VER"
+            },
+            "nullable": true
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VWR"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VWR": {
+        "type": "object",
+        "properties": {
+          "warningCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "FestivalPass": {
+        "type": "apiKey",
+        "description": "Festival pass token",
+        "name": "X-WOODSTOCK-PASS",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    { }
+  ],
+  "tags": [
+    {
+      "name": "Pitty"
+    }
+  ]
+}
