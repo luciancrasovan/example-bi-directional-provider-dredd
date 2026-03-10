@@ -234,7 +234,7 @@
       "PittyD": {
         "type": "object",
         "properties": {
-          "c": {
+          "cosmicPayload": {
             "$ref": "#/components/schemas/PittyDC"
           }
         },
@@ -243,11 +243,11 @@
       "PittyDA": {
         "type": "object",
         "properties": {
-          "m": {
+          "moodSignature": {
             "type": "string",
             "nullable": true
           },
-          "p": {
+          "prismProducts": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PittyDP"
@@ -260,7 +260,7 @@
       "PittyDC": {
         "type": "object",
         "properties": {
-          "a": {
+          "auroraBatches": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PittyDA"
@@ -277,23 +277,23 @@
       "PittyDP": {
         "type": "object",
         "properties": {
-          "id": {
+          "nebulaId": {
             "type": "integer",
             "format": "int32"
           },
-          "productNr": {
+          "artifactCode": {
             "type": "string",
             "nullable": true
           },
-          "modelNr": {
+          "constellationCode": {
             "type": "string",
             "nullable": true
           },
-          "pxid": {
+          "phoenixId": {
             "type": "string",
             "nullable": true
           },
-          "t": {
+          "traitBundles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PittyDT"
@@ -306,34 +306,34 @@
       "PittyDT": {
         "type": "object",
         "properties": {
-          "tN": {
+          "themeName": {
             "type": "string",
             "nullable": true
           },
-          "v": {
+          "vibeValues": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PittyDV"
             },
             "nullable": true
           },
-          "aL": {
+          "auraLevel": {
             "type": "string",
             "nullable": true
           },
-          "c": {
+          "chromaticCode": {
             "type": "string",
             "nullable": true
           },
-          "l": {
+          "localeTag": {
             "type": "string",
             "nullable": true
           },
-          "dId": {
+          "dreamId": {
             "type": "string",
             "nullable": true
           },
-          "sId": {
+          "starlightId": {
             "type": "string",
             "nullable": true
           }
@@ -343,40 +343,40 @@
       "PittyDV": {
         "type": "object",
         "properties": {
-          "fN": {
+          "fieldName": {
             "type": "string",
             "nullable": true
           },
-          "fT": {
+          "fieldType": {
             "type": "string",
             "nullable": true
           },
-          "iN": {
+          "isNullable": {
             "type": "boolean"
           },
-          "cX": {
+          "contextHint": {
             "type": "string",
             "nullable": true
           },
-          "dV": {
+          "dateValue": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "sV": {
+          "stringValue": {
             "type": "string",
             "nullable": true
           },
-          "iV": {
+          "integerValue": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bV": {
+          "booleanValue": {
             "type": "boolean",
             "nullable": true
           },
-          "fV": {
+          "floatValue": {
             "type": "number",
             "format": "double",
             "nullable": true
