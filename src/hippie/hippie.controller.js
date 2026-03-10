@@ -63,7 +63,7 @@ const errorResponse = () => ({
 
 const forcedStatus = (request) => {
     const headerValue = Number.parseInt(String(request.headers['x-force-status'] || ''), 10);
-    if ([400, 422, 500].includes(headerValue)) {
+    if ([400, 401, 422, 500].includes(headerValue)) {
         return headerValue;
     }
 
@@ -78,11 +78,11 @@ const forcedStatus = (request) => {
 exports.notty = async (req, res) => {
     const mediaType = resolveResponseMediaType(req);
 
-    if (!req.headers['x-woodstock-pass']) {
+    const status = forcedStatus(req);
+
+    if (status === 401) {
         return sendPayload(res, unauthorizedResponse(), mediaType, 401);
     }
-
-    const status = forcedStatus(req);
 
     if (status === 400) {
         return sendPayload(res, badRequestResponse(), mediaType, 400);

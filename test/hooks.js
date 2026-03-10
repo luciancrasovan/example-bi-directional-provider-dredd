@@ -7,12 +7,15 @@ hooks.beforeEach((transaction, done) => {
 	const request = transaction.request;
 
 	if (uri.includes('/pitty/notty')) {
-		headers['X-WOODSTOCK-PASS'] = 'festival-pass';
 		delete headers['x-force-status'];
 		request.uri = '/pitty/notty';
 
 		if (expectedStatusCode === '400') {
 			headers['x-force-status'] = '400';
+		}
+
+		if (expectedStatusCode === '401') {
+			headers['x-force-status'] = '401';
 		}
 
 		if (expectedStatusCode === '422') {
@@ -23,10 +26,6 @@ hooks.beforeEach((transaction, done) => {
 			headers['x-force-status'] = '500';
 		}
 
-		if (expectedStatusCode === '401') {
-			delete headers['X-WOODSTOCK-PASS'];
-			delete headers['x-woodstock-pass'];
-		}
 	}
 
 	transaction.request.headers = headers;
