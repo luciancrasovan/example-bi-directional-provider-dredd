@@ -13,7 +13,7 @@ env:
   PACT_BROKER_BASE_URL: https://xxxldigital.pactflow.io/
   PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
   PACT_BROKER_PUBLISH_VERIFICATION_RESULTS: true
-  DEPLOY_ENVIRONMENT: staging
+  DEPLOY_ENVIRONMENT: production
   GIT_COMMIT: ${{ github.sha }}
   GITHUB_REF: ${{ github.ref }}
   PACT_CLI_DOCKER_VERSION: ${{ github.event.inputs.PACT_CLI_DOCKER_VERSION }}
@@ -71,7 +71,7 @@ jobs:
         run: GIT_BRANCH=${GITHUB_REF:11} make can_i_deploy
         shell: bash
 
-  # Only deploy from stan-v1
+  # Only deploy from stan-api-v1-prod
   deploy:
     strategy:
       fail-fast: false
@@ -85,5 +85,5 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: 🚀 Deploy
         run: GIT_BRANCH=${GITHUB_REF:11} make deploy
-        if: github.ref == 'refs/heads/stan-v1'
+        if: github.ref == 'refs/heads/stan-api-v1-prod'
         shell: bash

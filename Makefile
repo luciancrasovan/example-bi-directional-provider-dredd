@@ -16,13 +16,13 @@ OAS_PATH=oas/stan-v1.json
 REPORT_PATH?=output/report.md
 REPORT_FILE_CONTENT_TYPE?=text/plain
 VERIFIER_TOOL?=dredd
-DEPLOY_ENVIRONMENT ?= staging
+DEPLOY_ENVIRONMENT ?= production
 
 ## ====================
-## Only deploy from stan-v1
+## Only deploy from stan-api-v1-prod
 ## ====================
 
-ifeq ($(BRANCH),stan-v1)
+ifeq ($(BRANCH),stan-api-v1-prod)
 	DEPLOY_TARGET=deploy
 else
 	DEPLOY_TARGET=no_deploy
@@ -80,7 +80,7 @@ test:
 deploy: deploy_app record_deployment
 
 no_deploy:
-	@echo "Not deploying as not on stan-v1 branch"
+	@echo "Not deploying as not on stan-api-v1-prod branch"
 
 can_i_deploy: 
 	@echo "\n========== STAGE: can-i-deploy? 🌉 ==========\n"
