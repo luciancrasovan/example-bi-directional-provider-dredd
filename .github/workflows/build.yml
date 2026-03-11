@@ -70,7 +70,7 @@ jobs:
         run: GIT_BRANCH=${GITHUB_REF:11} make can_i_deploy
         shell: bash
 
-  # Only deploy from hype-api-v1
+  # Only deploy from branches that start with hype-api
   deploy:
     strategy:
       fail-fast: false
@@ -84,5 +84,5 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: 🚀 Deploy
         run: GIT_BRANCH=${GITHUB_REF:11} make deploy
-        if: github.ref == 'refs/heads/hype-api-v1'
+        if: startsWith(github.ref, 'refs/heads/hype-api')
         shell: bash
