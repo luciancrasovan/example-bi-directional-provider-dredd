@@ -13,6 +13,7 @@ env:
   PACT_BROKER_BASE_URL: https://xxxldigital.pactflow.io/
   PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
   PACT_BROKER_PUBLISH_VERIFICATION_RESULTS: true
+  DEPLOY_ENVIRONMENT: ${{ github.ref == 'refs/heads/ready-prod' && 'production' || 'staging' }}
   GIT_COMMIT: ${{ github.sha }}
   GITHUB_REF: ${{ github.ref }}
   PACT_CLI_DOCKER_VERSION: ${{ github.event.inputs.PACT_CLI_DOCKER_VERSION }}
@@ -70,7 +71,7 @@ jobs:
         run: GIT_BRANCH=${GITHUB_REF:11} make can_i_deploy
         shell: bash
 
-  # Only deploy from branches that start with hype-api
+  # Deploy from hype-api* branches (staging) and ready-prod (production)
   deploy:
     strategy:
       fail-fast: false
@@ -84,5 +85,5 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: 🚀 Deploy
         run: GIT_BRANCH=${GITHUB_REF:11} make deploy
-        if: startsWith(github.ref, 'refs/heads/hype-api')
+        if: startsWith(github.ref, 'refs/heads/hype-api') || github.ref == 'refs/heads/ready-prod'
         shell: bash

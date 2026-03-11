@@ -19,10 +19,10 @@ VERIFIER_TOOL?=dredd
 DEPLOY_ENVIRONMENT ?= staging
 
 ## ====================
-## Only deploy from hype-api* branches
+## Only deploy from hype-api* branches and ready-prod
 ## ====================
 
-ifneq (,$(filter hype-api%,$(BRANCH)))
+ifneq (,$(filter hype-api% ready-prod,$(BRANCH)))
 	DEPLOY_TARGET=deploy
 else
 	DEPLOY_TARGET=no_deploy
@@ -80,7 +80,7 @@ test:
 deploy: deploy_app record_deployment
 
 no_deploy:
-	@echo "Not deploying as branch does not start with hype-api"
+	@echo "Not deploying as branch is neither hype-api* nor ready-prod"
 
 can_i_deploy: 
 	@echo "\n========== STAGE: can-i-deploy? 🌉 ==========\n"
