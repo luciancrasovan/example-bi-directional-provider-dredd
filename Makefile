@@ -1,4 +1,4 @@
-PACTICIPANT ?= "example-bi-directional-provider-dredd"
+PACTICIPANT ?= "stan-api-v1"
 GITHUB_REPO := "luciancrasovan/example-bi-directional-provider-dredd"
 PACT_CLI_DOCKER_VERSION?=latest
 PACT_CLI_DOCKER_RUN_COMMAND?=docker run --rm -v /${PWD}:/${PWD} -w ${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:${PACT_CLI_DOCKER_VERSION}
@@ -16,12 +16,13 @@ OAS_PATH=oas/stan-v1.json
 REPORT_PATH?=output/report.md
 REPORT_FILE_CONTENT_TYPE?=text/plain
 VERIFIER_TOOL?=dredd
+DEPLOY_ENVIRONMENT ?= staging
 
 ## ====================
-## Only deploy from main
+## Only deploy from stan-v1
 ## ====================
 
-ifeq ($(BRANCH),master)
+ifeq ($(BRANCH),stan-v1)
 	DEPLOY_TARGET=deploy
 else
 	DEPLOY_TARGET=no_deploy
@@ -79,14 +80,14 @@ test:
 deploy: deploy_app record_deployment
 
 no_deploy:
-	@echo "Not deploying as not on master branch"
+	@echo "Not deploying as not on stan-v1 branch"
 
 can_i_deploy: 
 	@echo "\n========== STAGE: can-i-deploy? 🌉 ==========\n"
 	${PACT_BROKER_CLI_COMMAND} can-i-deploy \
 	--pacticipant ${PACTICIPANT} \
 	--version ${VERSION} \
-	--to-environment production \
+	--to-environment ${DEPLOY_ENVIRONMENT} \
 	--retry-while-unknown 6 \
 	--retry-interval 10
 
@@ -95,6 +96,6 @@ deploy_app:
 	@echo "Deploying to prod"
 
 record_deployment: 
-	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment production
+	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
 
 .PHONY: all test clean
