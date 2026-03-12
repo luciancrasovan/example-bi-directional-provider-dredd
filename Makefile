@@ -77,7 +77,7 @@ test:
 ## Deploy tasks
 ## =====================
 
-deploy: deploy_app record_deployment
+deploy: deploy_app record_deployment record_release
 
 no_deploy:
 	@echo "Not deploying as not on stan-api-v1-prod branch"
@@ -96,6 +96,9 @@ deploy_app:
 	@echo "Deploying to prod"
 
 record_deployment: 
-	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
+        @${PACT_BROKER_CLI_COMMAND} record-deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
 
-.PHONY: all test clean
+record_release:
+        @echo "\n========== STAGE: record-release 📦 ==========\n"
+        @${PACT_BROKER_CLI_COMMAND} record-release --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
+

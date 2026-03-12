@@ -87,3 +87,7 @@ jobs:
         run: GIT_BRANCH=${GITHUB_REF:11} make deploy
         if: github.ref == 'refs/heads/stan-api-v1-prod'
         shell: bash
+      - name: 📦 Record release
+        run: GIT_BRANCH=${GITHUB_REF:11} make record_release
+        if: github.ref == 'refs/heads/stan-api-v1-prod'
+        shell: bash
