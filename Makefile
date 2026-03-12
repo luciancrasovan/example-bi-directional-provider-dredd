@@ -96,9 +96,11 @@ deploy_app:
 	@echo "Deploying to prod"
 
 record_deployment: 
-        @${PACT_BROKER_CLI_COMMAND} record-deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
+	@${PACT_BROKER_CLI_COMMAND} record-deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
 
 record_release:
-        @echo "\n========== STAGE: record-release 📦 ==========\n"
-        @${PACT_BROKER_CLI_COMMAND} record-release --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
+	@echo "\n========== STAGE: record-release 📦 ==========\n"
+	@${PACT_BROKER_CLI_COMMAND} record-release --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
+
+.PHONY: all test clean
 
