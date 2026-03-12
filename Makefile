@@ -1,4 +1,4 @@
-PACTICIPANT ?= "example-bi-directional-provider-dredd"
+PACTICIPANT ?= "stan-api-v2"
 GITHUB_REPO := "luciancrasovan/example-bi-directional-provider-dredd"
 PACT_CLI_DOCKER_VERSION?=latest
 PACT_CLI_DOCKER_RUN_COMMAND?=docker run --rm -v /${PWD}:/${PWD} -w ${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:${PACT_CLI_DOCKER_VERSION}
@@ -86,7 +86,7 @@ can_i_deploy:
 	${PACT_BROKER_CLI_COMMAND} can-i-deploy \
 	--pacticipant ${PACTICIPANT} \
 	--version ${VERSION} \
-	--to-environment production \
+	--to-environment staging \
 	--retry-while-unknown 6 \
 	--retry-interval 10
 
@@ -95,6 +95,6 @@ deploy_app:
 	@echo "Deploying to prod"
 
 record_deployment: 
-	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment production
+	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment staging
 
 .PHONY: all test clean
