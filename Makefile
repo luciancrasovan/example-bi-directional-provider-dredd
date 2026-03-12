@@ -86,7 +86,7 @@ can_i_deploy:
 	${PACT_BROKER_CLI_COMMAND} can-i-deploy \
 	--pacticipant ${PACTICIPANT} \
 	--version ${VERSION} \
-	--to-environment staging \
+	--to-environment production \
 	--retry-while-unknown 6 \
 	--retry-interval 10
 
@@ -95,6 +95,6 @@ deploy_app:
 	@echo "Deploying to prod"
 
 record_deployment: 
-	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment staging
+	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment production
 
 .PHONY: all test clean
