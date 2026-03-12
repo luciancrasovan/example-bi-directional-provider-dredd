@@ -17,6 +17,7 @@ env:
   GIT_COMMIT: ${{ github.sha }}
   GITHUB_REF: ${{ github.ref }}
   PACT_CLI_DOCKER_VERSION: ${{ github.event.inputs.PACT_CLI_DOCKER_VERSION }}
+  VERSION: ${{ github.sha }}
 
 jobs:
   set-pact-cli-docker-version:
