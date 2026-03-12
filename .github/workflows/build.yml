@@ -16,6 +16,7 @@ env:
   GIT_COMMIT: ${{ github.sha }}
   GITHUB_REF: ${{ github.ref }}
   PACT_CLI_DOCKER_VERSION: ${{ github.event.inputs.PACT_CLI_DOCKER_VERSION }}
+  VERSION: ${{ github.sha }}
 
 jobs:
   set-pact-cli-docker-version:
@@ -86,3 +87,5 @@ jobs:
         run: GIT_BRANCH=${GITHUB_REF:11} make deploy
         if: github.ref == 'refs/heads/stan-v3'
         shell: bash
+        env:
+          BRANCH: ${{ github.ref_name }}
