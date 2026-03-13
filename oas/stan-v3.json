@@ -2,7 +2,7 @@
   "openapi": "3.0.4",
   "info": {
     "title": "Contract Surface Three",
-    "description": "Synthetic API definition for external consumers.",
+    "description": "Synthetic API definition for external consumers. ",
     "version": "3.0"
   },
   "paths": {
