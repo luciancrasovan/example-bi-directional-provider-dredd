@@ -10,12 +10,13 @@ on:
         default: latest
 
 env:
-  PACT_BROKER_BASE_URL: https://flow-is-beautiful.pactflow.io/
-  PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN_FOR_CI_CD_WORKSHOP }}
+  PACT_BROKER_BASE_URL: https://xxxldigital.pactflow.io/
+  PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
   PACT_BROKER_PUBLISH_VERIFICATION_RESULTS: true
   GIT_COMMIT: ${{ github.sha }}
   GITHUB_REF: ${{ github.ref }}
   PACT_CLI_DOCKER_VERSION: ${{ github.event.inputs.PACT_CLI_DOCKER_VERSION }}
+  VERSION: ${{ github.sha }}
 
 jobs:
   set-pact-cli-docker-version:
@@ -70,7 +71,7 @@ jobs:
         run: GIT_BRANCH=${GITHUB_REF:11} make can_i_deploy
         shell: bash
 
-  # Only deploy from master
+  # Only deploy from stan-v3
   deploy:
     strategy:
       fail-fast: false
@@ -86,3 +87,5 @@ jobs:
         run: GIT_BRANCH=${GITHUB_REF:11} make deploy
         if: github.ref == 'refs/heads/master'
         shell: bash
+        env:
+          BRANCH: ${{ github.ref_name }}

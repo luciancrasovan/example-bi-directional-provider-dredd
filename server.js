@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const routes = require('./src/product/product.routes');
-const authMiddleware = require('./src/middleware/auth.middleware');
+const routes = require('./src/stan/stan.routes');
 
 const port = 3001;
 

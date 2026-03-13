@@ -1,4 +1,4 @@
-PACTICIPANT ?= "example-bi-directional-provider-dredd"
+PACTICIPANT ?= "stan-api-v3"
 GITHUB_REPO := "luciancrasovan/example-bi-directional-provider-dredd"
 PACT_CLI_DOCKER_VERSION?=latest
 PACT_CLI_DOCKER_RUN_COMMAND?=docker run --rm -v /${PWD}:/${PWD} -w ${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:${PACT_CLI_DOCKER_VERSION}
@@ -12,10 +12,11 @@ PACTFLOW_CLI_COMMAND:=${PACT_CLI_DOCKER_RUN_COMMAND} ${PACTFLOW_CLI_COMMAND}
 ## ====================
 VERSION?=$(shell npx -y absolute-version)
 BRANCH?=$(shell git rev-parse --abbrev-ref HEAD)
-OAS_PATH=oas/products.yml
+OAS_PATH=oas/stan-v3.json
 REPORT_PATH?=output/report.md
 REPORT_FILE_CONTENT_TYPE?=text/plain
 VERIFIER_TOOL?=dredd
+DEPLOY_ENVIRONMENT ?= production
 
 ## ====================
 ## Only deploy from main
@@ -42,12 +43,14 @@ ci:
 
 publish_provider_contract:
 	@echo "\n========== STAGE: publish-provider-contract (spec + results) ==========\n"
+	@mkdir -p $(dir ${REPORT_PATH})
+	@touch ${REPORT_PATH}
 	${PACTFLOW_CLI_COMMAND} publish-provider-contract \
       ${OAS_PATH} \
       --provider ${PACTICIPANT} \
       --provider-app-version ${VERSION} \
       --branch ${BRANCH} \
-      --content-type application/yaml \
+	--content-type application/json \
       --verification-exit-code=${EXIT_CODE} \
       --verification-results ${REPORT_PATH} \
       --verification-results-content-type ${REPORT_FILE_CONTENT_TYPE}\
@@ -74,7 +77,7 @@ test:
 ## Deploy tasks
 ## =====================
 
-deploy: deploy_app record_deployment
+deploy: deploy_app record_deployment record_release
 
 no_deploy:
 	@echo "Not deploying as not on master branch"
@@ -84,7 +87,7 @@ can_i_deploy:
 	${PACT_BROKER_CLI_COMMAND} can-i-deploy \
 	--pacticipant ${PACTICIPANT} \
 	--version ${VERSION} \
-	--to-environment production \
+	--to-environment ${DEPLOY_ENVIRONMENT} \
 	--retry-while-unknown 6 \
 	--retry-interval 10
 
@@ -93,6 +96,10 @@ deploy_app:
 	@echo "Deploying to prod"
 
 record_deployment: 
-	@${PACT_BROKER_CLI_COMMAND} record_deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment production
+	@${PACT_BROKER_CLI_COMMAND} record-deployment --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
+
+record_release:
+	@echo "\n========== STAGE: record-release 📦 ==========\n"
+	@${PACT_BROKER_CLI_COMMAND} record-release --pacticipant ${PACTICIPANT} --version ${VERSION} --environment ${DEPLOY_ENVIRONMENT}
 
 .PHONY: all test clean

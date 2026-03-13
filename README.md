@@ -6,7 +6,7 @@
 
 <!-- Can I Deploy Badge -->
 
-[![Can I deploy Status](https://testdemo.pactflow.io/pacticipants/example-bi-directional-provider-dredd/branches/master/latest-version/can-i-deploy/to-environment/production/badge)](https://testdemo.pactflow.io/pacticipants/example-bi-directional-provider-dredd/branches/master/latest-version/can-i-deploy/to-environment/production/badge)
+[![Can I deploy Status](https://testdemo.pactflow.io/pacticipants/stan-api-v3/branches/master/latest-version/can-i-deploy/to-environment/production/badge)](https://testdemo.pactflow.io/pacticipants/stan-api-v3/branches/master/latest-version/can-i-deploy/to-environment/production/badge)
 
 - [Example NodeJS Provider - Dredd](#example-nodejs-provider---dredd)
   - [Overview of Example](#overview-of-example)
@@ -164,3 +164,4 @@ These will be the same commands that are used in the makefile with a few manual 
 ## Found an issue?
 
 Reach out via a GitHub Issue, or reach us over in the [Pact foundation Slack](https://slack.pact.io)
+.
