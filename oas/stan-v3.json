@@ -306,7 +306,8 @@
         "required": [
           "code",
           "id",
-          "name"
+          "name",
+          "name2"
         ],
         "type": "object",
         "properties": {
@@ -319,6 +320,10 @@
             "nullable": true
           },
           "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "name2": {
             "type": "string",
             "nullable": true
           },

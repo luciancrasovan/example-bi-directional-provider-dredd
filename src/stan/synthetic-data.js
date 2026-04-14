@@ -9,6 +9,7 @@ const buildKutty = (id) => {
         id: value,
         code: `KCODE-${value}`,
         name: `Synthetic Kutty ${value}`,
+        name2: `Synthetic Kutty ${value}`,
         category: 'standard'
     };
 };
